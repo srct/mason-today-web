@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns:openSearch="http://a9.com/-/spec/opensearchrss/1.0/" xmlns:gd="http://schemas.google.com/g/2005" xmlns:x-trumba="http://schemas.trumba.com/atom/x-trumba" xmlns:gc="http://base.google.com/cns/1.0" xmlns="http://www.w3.org/2005/Atom">
+	<id>http://uid.trumba.com/calendar/28393</id>
+	<updated>2017-10-04T14:50:50Z</updated>
+	<title type="text">*GMU Home|Audience|Today@Mason</title>
+	<subtitle type="text"></subtitle>
+	<link rel="alternate" type="text/html" href="https://www2.gmu.edu/today-mason" />
+	<link rel="self" type="application/atom+xml" href="https://www2.gmu.edu/today-mason.xml" />
+	<author>
+		<name>*GMU Home » Audience » Today@Mason</name>
+	</author>
+	<generator version="11.15418" uri="http://www.trumba.com/">Trumba Calendar</generator>
+	<gd:where valueString="" />
+	<entry>
+		<id>http://uid.trumba.com/event/265353171</id>
+		<published>2017-11-27T13:00:00Z</published>
+		<updated>2017-11-27T13:00:00Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/g/2005#event" />
+		<title type="text">Food and Toiletries Drive for Mason Pop-up Pantry</title>
+		<content type="html">Johnson Center Gateway Library First Floor, Fairfax Campus &lt;br/&gt;Ongoing through Monday, December 4, 2017, 10pm &lt;br/&gt;&lt;br/&gt;&lt;p&gt;University Libraries are collecting non-perishable food items and toiletries for Mason&amp;#39;s Pop-Up Pantry.&amp;#160;&amp;#160;&lt;/p&gt; &lt;p&gt;Each item donated give you a raffle ticket and enters you for a chance to win gift cards for various goods.&amp;#160;&lt;/p&gt; &lt;p&gt;Boxes for donations will be at Gateway Library and Fenwick Library.&amp;#160;&lt;/p&gt; &lt;br/&gt;&lt;br/&gt;&lt;br/&gt;</content>
+		<link rel="alternate" type="text/html" href="https://www2.gmu.edu/today-mason?trumbaEmbed=view%3devent%26eventid%3d265353171" />
+		<author>
+			<name>*GMU Home » Audience » Today@Mason</name>
+		</author>
+	</entry>
+	<entry>
+		<id>http://uid.trumba.com/event/267530516</id>
+		<published>2017-12-03T14:30:00Z</published>
+		<updated>2017-12-03T14:30:00Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/g/2005#event" />
+		<title type="text">UBF Worship Service</title>
+		<content type="html">Student Union I 3A - Meeting Room, Fairfax Campus &lt;br/&gt;Sunday, December 3, 2017, 9:30am&amp;nbsp;&amp;ndash;&amp;nbsp;2pm &lt;br/&gt;&lt;br/&gt;&lt;p&gt;The University of Bible Fellowship will be having a Christian, non denominational worship service. We will be having fellowship at the end of the service by eating lunch together.&lt;/p&gt; &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Publish event on the Calendar?&lt;/b&gt;:&amp;nbsp;TRUE &lt;br/&gt;&lt;b&gt;Performing any medical procedures?&lt;/b&gt;:&amp;nbsp;FALSE &lt;br/&gt;&lt;b&gt;Parking Needed?&lt;/b&gt;:&amp;nbsp;FALSE &lt;br/&gt;&lt;br/&gt;</content>
+		<link rel="alternate" type="text/html" href="https://www2.gmu.edu/today-mason?trumbaEmbed=view%3devent%26eventid%3d267530516" />
+		<author>
+			<name>*GMU Home » Audience » Today@Mason</name>
+		</author>
+	</entry>
+	<entry>
+		<id>http://uid.trumba.com/event/271496188</id>
+		<published>2017-12-03T15:00:00Z</published>
+		<updated>2017-12-03T15:00:00Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/g/2005#event" />
+		<title type="text">GMU Bhangra Practice with DCBC</title>
+		<content type="html">Johnson Center G34 - Dance Studio, Fairfax Campus &lt;br/&gt;Sunday, December 3, 2017, 10am&amp;nbsp;&amp;ndash;&amp;nbsp;2pm &lt;br/&gt;&lt;br/&gt;&lt;p&gt;Competition Practice with DCBC&amp;#160;&lt;/p&gt; &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Publish event on the Calendar?&lt;/b&gt;:&amp;nbsp;TRUE &lt;br/&gt;&lt;b&gt;Performing any medical procedures?&lt;/b&gt;:&amp;nbsp;FALSE &lt;br/&gt;&lt;b&gt;Parking Needed?&lt;/b&gt;:&amp;nbsp;FALSE &lt;br/&gt;&lt;br/&gt;</content>
+		<link rel="alternate" type="text/html" href="https://www2.gmu.edu/today-mason?trumbaEmbed=view%3devent%26eventid%3d271496188" />
+		<author>
+			<name>*GMU Home » Audience » Today@Mason</name>
+		</author>
+	</entry>
+	<entry>
+		<id>http://uid.trumba.com/event/259441989</id>
+		<published>2017-12-03T16:30:00Z</published>
+		<updated>2017-12-03T16:30:00Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/g/2005#event" />
+		<title type="text">Alpha Phi Omega Weekly Meetings</title>
+		<content type="html">Sunday, December 3, 2017, 11:30am&amp;nbsp;&amp;ndash;&amp;nbsp;4:30pm &lt;br/&gt;&lt;br/&gt;&lt;p&gt;Alpha Phi Omega Executive Board Meeting followed by General Brother Meeting and New Member Meeting. Occurs weekly unless otherwise noted.&lt;/p&gt; &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Publish event on the Calendar?&lt;/b&gt;:&amp;nbsp;TRUE &lt;br/&gt;&lt;b&gt;Performing any medical procedures?&lt;/b&gt;:&amp;nbsp;FALSE &lt;br/&gt;&lt;b&gt;Parking Needed?&lt;/b&gt;:&amp;nbsp;FALSE &lt;br/&gt;&lt;br/&gt;</content>
+		<link rel="alternate" type="text/html" href="https://www2.gmu.edu/today-mason?trumbaEmbed=view%3devent%26eventid%3d259441989" />
+		<author>
+			<name>*GMU Home » Audience » Today@Mason</name>
+		</author>
+	</entry>
+	<entry>
+		<id>http://uid.trumba.com/event/271588920</id>
+		<published>2017-12-03T17:00:00Z</published>
+		<updated>2017-12-03T17:00:00Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/g/2005#event" />
+		<title type="text">IND General Business Meeting</title>
+		<content type="html">Research Hall 301 - Meeting Room, Fairfax Campus &lt;br/&gt;Sunday, December 3, 2017, 12&amp;nbsp;&amp;ndash;&amp;nbsp;3pm &lt;br/&gt;&lt;br/&gt;&lt;p&gt;CLOSED General Business Meeting for Iota Nu Delta Fraternity, Inc.&amp;#160;&lt;/p&gt; &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Publish event on the Calendar?&lt;/b&gt;:&amp;nbsp;TRUE &lt;br/&gt;&lt;b&gt;Performing any medical procedures?&lt;/b&gt;:&amp;nbsp;FALSE &lt;br/&gt;&lt;b&gt;Parking Needed?&lt;/b&gt;:&amp;nbsp;FALSE &lt;br/&gt;&lt;br/&gt;</content>
+		<link rel="alternate" type="text/html" href="https://www2.gmu.edu/today-mason?trumbaEmbed=view%3devent%26eventid%3d271588920" />
+		<author>
+			<name>*GMU Home » Audience » Today@Mason</name>
+		</author>
+	</entry>
+</feed>
