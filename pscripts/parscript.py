@@ -1,21 +1,21 @@
 print "and we begin"
 
-import requests
-from bs4.diagnose import diagnose
 from bs4 import BeautifulSoup
+import requests
+#from bs4.diagnose import diagnose
 
-#r = requests.get("http://25livepub.collegenet.com/calendars/events_all.xml")
-f = open("events.xml", "r")
+f = requests.get("http://25livepub.collegenet.com/calendars/events_all.xml") #grabs the xml from 25live
+#f = open("events.xml", "r") #Opens a local document. events.xml is a shortened version of the larger events doc
 
-soup = BeautifulSoup(f.read(), "lxml")
-entries = soup.find_all('entry')
-print type(entries[0]), "\n"
-print entries[0].prettify(), "\n"
-print entries[0].find('content').prettify(), "\n"
+soup = BeautifulSoup(f.text, "lxml") #creates soup of the xml
+entries = soup.find_all('entry') #creates a list of all the entry tags from the xml
+print type(entries[0]), "\n" #prints the first entry
+print entries[0].prettify(), "\n" #prints the first entry out
+print entries[0].find('content').prettify(), "\n" #prints the first content tag in the first entry
 
 titles = []
 for item in entries:
-    ladle = BeautifulSoup(unicode(item.string), "lxml")
-    titles = ladle.find_all('title')
+    titles.append(item.find('title').string)
+#this iterates through the entries and puts each event's title into a list
 
 print titles
