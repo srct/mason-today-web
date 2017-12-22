@@ -28,17 +28,25 @@ xmldoc = requests.get("http://25livepub.collegenet.com/calendars/events_all.xml"
 #xmldoc = open("events.xml", "r") #Opens a local document. events.xml is a shortened version of the larger events doc
 
 xmldoc = cleanup(xmldoc.text)
-print xmldoc
+#print xmldoc
 soup = BeautifulSoup(xmldoc, "lxml") #creates soup of the xml
-print soup.prettify(), "\n\n"
+#print soup.prettify(), "\n\n"
 
-
-entries = soup.find_all('entry') #creates a list of all the entry tags from the xml
-#print type(entries[0]), "\n" #prints the first entry
-#print entries[0].prettify(), "\n" #prints the first entry out
-#print entries[0].find('content').prettify(), "\n" #prints the first content tag in the first entry
+#creates a list of all the entry tags from the xml
+entries = soup.findAll('entry')
 
 
 
-#for item in entries:
-#    print item.find('content').string, "\n\n"
+#just to make sure things still work
+#print entries[0].title.text
+
+
+#indexs an entry in the list of entries 
+for entry in entries:
+
+    #pulls up an entry in the list of entries, finds the title tag and text deletes all xml tags and returns just the text
+    title_text = entry.title.text
+    print title_text
+
+    
+    
