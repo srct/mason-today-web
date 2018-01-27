@@ -6,6 +6,20 @@ import requests
 
 eventDict = {}
 
+DaysOfWeek = {
+    "Sunday" : 0,
+    "Monday" : 1,
+    "Tuesday" : 2,
+    "Wednesday" : 3,
+    "Thursday" : 4,
+    "Friday" : 5,
+    "Saturday" : 6,
+}
+
+
+notProvide = "Not not provided"
+counter = 0
+
 class Event:
     def __init__(self, entryTag): #where var entryTag is a specific event tag
         self.__name = entryTag.find('title').string
@@ -64,6 +78,17 @@ def cleancontent(str):
     #this is here because there's always a \n at the end and it's pissing me off and is getting in the way
     str = str[0:len(str) - 1]
     return str
+
+class eventException:
+
+    def __init__(self,message):
+        self.__message = message
+        self.__exceptionlist = []
+
+    def __str__(self):
+        return self.__exceptionlist
+    
+
 
 xmldoc = requests.get("http://25livepub.collegenet.com/calendars/events_all.xml") #grabs the xml from 25live
 #xmldoc = open("events.xml", "r") #Opens a local document. events.xml is a shortened version of the larger events doc
@@ -125,54 +150,41 @@ for entry in entries:
     #(F) if the length of the list = 3 and date is index [1] --> location is given at [0] and description is given at [2]   
     
 
-
     #the two if statements finds the date string. The date string always starts with 
     #Monday Tuesday Wednesday Thursday Friday Saturday Sunday or Ongoing and the date 
     #is always on either [0] or [1]
     
-    if (#see (A) above
-    entry_detailes[0][0:6] == "Monday" or 
-    entry_detailes[0][0:7] == "Tuesday" or 
-    entry_detailes[0][0:9] == "Wednesday" or 
-    entry_detailes[0][0:8] == "Thursday" or 
-    entry_detailes[0][0:6] == "Friday" or
-    entry_detailes[0][0:8] == "Saturday" or 
-    entry_detailes[0][0:6] == "Sunday" or 
-    entry_detailes[0][0:7] == "Ongoing"):
+    #see (A) above
+    if entry_detailes[0].split(",")[0] in DaysOfWeek:
         #See (B)
         if len(entry_detailes) == 1:
+            location = notProvide
             entry.location = "no location"
             date = entry_detailes[0]
-            description = "no description"
+            description = notProvide
         #see (C)
         elif len(entry_detailes) == 2:
-            location = "no location"
+            location = notProvide
             date = entry_detailes[0]
             description = entry_detailes[1]
         #This extra case was made because one entry had the description split into two by a 
         #newline so it registered as two descriptions making the length = 3
         elif len(entry_detailes) == 3:  
-            location = "no location"
+            location = notProvide
             date = entry_detailes[0]
             description = entry_detailes[1] + " " + entry_detailes[2]
         #this will print if the code has failed to account for something in detailes, but it works as of December 26th 2017
         else:
-            print "wut, this hsouldn't print plz halp,"     
+            raise eventException("failed to account for detail in entry_detailes when date element is index 0 on entry_detailes list")
 
-    elif(#see (D) above
-    entry_detailes[1][0:6] == "Monday" or 
-    entry_detailes[1][0:7] == "Tuesday" or 
-    entry_detailes[1][0:9] == "Wednesday" or 
-    entry_detailes[1][0:8] == "Thursday" or 
-    entry_detailes[1][0:6] == "Friday" or 
-    entry_detailes[1][0:8] == "Saturday" or 
-    entry_detailes[1][0:6] == "Sunday" or 
-    entry_detailes[1][0:7] == "Ongoing"):
+
+    #see (D) above
+    elif entry_detailes[1].split(",")[0] in DaysOfWeek:
         #See (E)
         if len(entry_detailes) == 2:
             location = entry_detailes[0]
             date = entry_detailes[1]
-            description = "no description given"
+            description = notProvide
         #See (F)
         elif len(entry_detailes) == 3:
             location = entry_detailes[0]
@@ -186,11 +198,23 @@ for entry in entries:
             description = entry_detailes[2] + " " + entry_detailes[3]
         #this will print if the code has failed to account for something in detailes
         else:
-            print "wut, this hsouldn't print plz halp"
+            raise eventException("failed to account for detail in entry_detailes when date element is index 1 on entry_detailes list")
     #this will print if the above if statements failed to find the date block
     else:
-        print "if this prints there is something wrong please don't show up"
-    
+        raise eventException("failed to find and account for date element in entry_detailes list")
+   
+
+     
+    if "Fairfax Campus" in location:
+        location = location.split(", Fairfax Campus")
+        campus = "Fairfax"
+    elif "Arlington Campus" in location:
+        location = location.split(", Arlington Campus")
+        campus = "Arlington"
+    else:
+        location = [location]
+
+
     date = date.split(",")
     day = date[0]
     time = date[3][1:]
@@ -222,4 +246,5 @@ for entry in entries:
 
 
 
-#everything in the house is fuzzy 
+#everything in the house is fuzzy, stupid dogs were acting like pollinators, if that's how you even spell it
+
