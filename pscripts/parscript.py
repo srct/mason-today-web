@@ -192,5 +192,4 @@ for entry in entries:
 
 
 
-
 #everything in the house is fuzzy 

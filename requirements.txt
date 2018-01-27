@@ -17,5 +17,5 @@ requests
 run the following install commands:
 
 $ pip install beautifulsoup4
-$ pp install lxml
+$ pip install lxml
 $ pip install requests
