@@ -1,6 +1,7 @@
 #print "and we begin"
 
 from bs4 import BeautifulSoup
+from datetime import date, time
 import requests
 
 eventDict = {}
@@ -26,21 +27,33 @@ class Event:
         self.__time = "timeplaceholder"
         self.__date = "dateplaceholder"
         self.__location = "locationplaceholder"
+        self.__timehour = "00"
+        self.__timemin = "00"
+        self.__day = "null day"
 
     def __str__(self):
         return self.__name + ": " + self.__description + "\n\n"
 
-    def addDescript(description):
+    def setDescription(description):
         self.__description = description
 
-    def addTime(time):
+    def setTime(time):
         self.__time = time
 
-    def addDate(date):
+    def setDate(date):
         self.__date = date
 
-    def addLocation(location):
+    def setLocation(location):
         self.__location = location
+
+    def setTimehour(timehour):
+        self.__timehour = timehour
+
+    def setTimeminute(timemin):
+        self.__timemin = timemin
+
+    def setDay(day):
+        self.__day = day
 
 def cleanup(str):
     str = str.replace("&amp;", "&")
@@ -49,6 +62,10 @@ def cleanup(str):
     str = str.replace("&lt;", "<")
     str = str.replace("&gt;", ">")
     str = str.replace("<br/>", "\n")
+    str = str.replace("Publish event on the Calendar?: TRUE \n" , "")
+    str = str.replace("Performing any medical procedures?: FALSE \n" , "")
+    str = str.replace("Parking Needed?: FALSE \n" , "")
+    str = str[0:len(str) - 1]
     return str
 
 
@@ -101,8 +118,7 @@ for entry in entries:
     entry_content = entry_content.replace("\n\n" , "\n")
 
     #check clearcontent function
-    entry_content = cleancontent(entry_content) 
-
+    entry_content = cleanup(entry_content) #we might just get rid of this one
 
     #each piece of content may is seperated by a newline, entry_detailes creates a list 
     entry_detailes = entry_content.split("\n")
@@ -143,6 +159,7 @@ for entry in entries:
         #See (B)
         if len(entry_detailes) == 1:
             location = notProvide
+            entry.location = "no location"
             date = entry_detailes[0]
             description = notProvide
         #see (C)
@@ -175,7 +192,7 @@ for entry in entries:
             description = entry_detailes[2]
         #This extra case was made because one entry had the description split into two by a 
         #newline so it registered as two descriptions making the length = 3
-        elif  len(entry_detailes) == 4:
+        elif len(entry_detailes) == 4:
             location = entry_detailes[0]
             date = entry_detailes[1]
             description = entry_detailes[2] + " " + entry_detailes[3]
@@ -198,12 +215,24 @@ for entry in entries:
         location = [location]
 
 
-    #print "-----------------------------------------------------------------------------"
-    #print entry_title
+    date = date.split(",")
+    day = date[0]
+    time = date[3][1:]
+    date = date[1][1:] + "," + date[2]
+    date = date.split(" ")
+    month = date[0]
+    monthday = date[1][:(len(date[1]) - 1)]
+    year = date[2]
+
+
+    print "-----------------------------------------------------------------------------"
     print location
-    #print campus
-    #print date
-    #print description
+    print day
+    print month
+    print monthday
+    print year
+    print time
+    print description
     print "----------------------------------------------------------------------------"
     
 
@@ -217,5 +246,5 @@ for entry in entries:
 
 
 
-
 #everything in the house is fuzzy, stupid dogs were acting like pollinators, if that's how you even spell it
+
