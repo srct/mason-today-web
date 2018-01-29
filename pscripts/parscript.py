@@ -27,14 +27,14 @@ class Event:
         self.__time = "timeplaceholder"
         self.__date = "dateplaceholder"
         self.__location = "locationplaceholder"
-        self.__timehour = "00"
-        self.__timemin = "00"
+        self.__timestart = "00"
+        self.__timestop = "00"
         self.__day = "null day"
 
     def __str__(self):
         return self.__name + ": " + self.__description + "\n\n"
 
-    def setDescription(description):
+    '''def setDescription(description):
         self.__description = description
 
     def setTime(time):
@@ -53,9 +53,9 @@ class Event:
         self.__timemin = timemin
 
     def setDay(day):
-        self.__day = day
+        self.__day = day'''
 
-def cleanup(str):
+def cleanup(str): #this function cleans up some of the useless html leftovers to characters we can actually use
     str = str.replace("&amp;", "&")
     str = str.replace("&nbsp;", " ")
     str = str.replace("&ndash;", "-")
@@ -68,34 +68,56 @@ def cleanup(str):
     str = str[0:len(str) - 1]
     return str
 
-
-#this just seems like useless junk everytime they pop up it's always false or always true for the given condition 
-def cleancontent(str):
-    str = str.replace("Publish event on the Calendar?: TRUE \n" , "")
-    str = str.replace("Performing any medical procedures?: FALSE \n" , "")
-    str = str.replace("Parking Needed?: FALSE \n" , "")
-
-    #this is here because there's always a \n at the end and it's pissing me off and is getting in the way
-    str = str[0:len(str) - 1]
-    return str
-
-class eventException:
+class eventException: #this class is just an exception for our use
 
     def __init__(self,message):
         self.__message = message
-        self.__exceptionlist = []
+        #self.__exceptionlist = []
 
     def __str__(self):
-        return self.__exceptionlist
-    
+        return self.__message
 
 
-xmldoc = requests.get("http://25livepub.collegenet.com/calendars/events_all.xml") #grabs the xml from 25live
+def convertTime(stri): #this function is used for splicing the event times.
+		if (stri[-2:] == "pm"): #checks to see if the time presented is pm 
+			if not ((stri[0] == "1") and (stri[1] == "2")): #if the time is pm, then the 12:00 hour is noon and shouldn't get 12 added to it
+					try: #this try block works with the exception handler to add 12 to any pm times
+						stri = stri.replace(stri[0:2], str(int(stri[0:2]) + 12), 1)
+						print "I did the first one " + stri
+					except:
+						stri = stri.replace(stri[0], str(int(stri[0]) + 12), 1)
+						print "I did the NOT first one " + stri
+			if ":" in stri: #this if/else reliably converts the time to minutes. accepts either "hour:minute" or simply "hour"
+				try:
+					return ((int(stri[0:2])) * 60) + int(stri[3:5])
+				except:
+					return ((int(stri[0])) * 60) + int(stri[2:4])
+			else:
+				try:
+					return (int(stri[0:2])) * 60
+				except:
+					return (int(stri[0])) * 60
+		elif (stri[-2:] == "am"): #checks if the time presented is am, and executes identical code from the pm block, just without adding 12
+			if ":" in stri:
+				try:
+					return (int(stri[0:2]) * 60) + int(stri[3:5])
+				except:
+					return (int(stri[0]) * 60) + int(stri[2:4])
+			else:
+				try:
+					return int(stri[0:2]) * 60
+				except:
+					return int(stri[0]) * 60
+		else:
+			raise eventException("This is weird and please don't happen")
+
+
+#xmldoc = requests.get("http://25livepub.collegenet.com/calendars/events_all.xml") #grabs the xml from 25live
 #xmldoc = open("events.xml", "r") #Opens a local document. events.xml is a shortened version of the larger events doc
 
-xmldoc = cleanup(xmldoc.text)
+#xmldoc = cleanup(xmldoc.text)
 #print xmldoc
-soup = BeautifulSoup(xmldoc, "lxml") #creates soup of the xml
+soup = BeautifulSoup(cleanup(requests.get("http://25livepub.collegenet.com/calendars/events_all.xml").text), "lxml") #creates soup of the xml
 #print soup.prettify(), "\n\n"
 
 
@@ -103,7 +125,7 @@ soup = BeautifulSoup(xmldoc, "lxml") #creates soup of the xml
 #creates a list of all the entry tags from the xml
 entries = soup.findAll('entry')
 
-
+events = []
 #indexs an entry in the list of entries 
 for entry in entries:
 
@@ -225,26 +247,57 @@ for entry in entries:
     year = date[2]
 
 
+    time = time.replace(" ", "")
+    time = time.split("-")
+    try:
+	    timestop = convertTime(time[1])
+    except ValueError:
+    	raise eventException(str(time))
+    if timestop == None:
+    	raise eventException(str(time))
+    if not (time[0][-2:] == "am") and not (time[0][-2:] == "pm"):
+    	if (time[1][-2:] == "am"):
+    		timestart = convertTime(time[0] + "am")
+    	else:
+    		timestart = convertTime(time[0] + "pm")
+    else:
+    	timestart = convertTime(time[0])
+
+
+
+
     print "-----------------------------------------------------------------------------"
+    print time
     print location
     print day
     print month
     print monthday
     print year
-    print time
+    print timestart
+    print timestop
     print description
     print "----------------------------------------------------------------------------"
-    
+
+    #this exception here stops the program on a specific case where the time is "12 - 11pm"
+    #if location == ['Robinson Hall B111 - Classroom (TDC)', ' ']:
+    #	raise eventException("FOUND IT")
 
 
 
 
+'''
+possibilities:
+1)	split at -
+2)	check if 1 has nothing and 2 has am (this will be [-2:])
+	check if 1 has nothing and 2 has pm
+	check if 1 has am and 2 has pm
+3)  for each: check 1 is hour or hour:min ([] or [2] will be ':')
+4)	if hour, multiply by 60; if hour:min, multiply [0:1] or [0] by 60 and add [3:4] or [2:3].
 
 
 
 
-
-
+'''
 
 #everything in the house is fuzzy, stupid dogs were acting like pollinators, if that's how you even spell it
 
