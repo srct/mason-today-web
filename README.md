@@ -12,6 +12,6 @@ Step 3 - Create a web page that list out all the events and change what are pres
 
 # Setup instructions for local development
 
-1) Create a `virtualenv` if you know what that is
-2) Install the project's dependencies by running `pip install -r requirements.txt`
-3) Start the Flask development server by running `sh start.sh`
+1) Create a `virtualenv` if you know what that is  
+2) Install the project's dependencies by running `pip install -r requirements.txt`  
+3) Start the Flask development server by running `sh start.sh`  
