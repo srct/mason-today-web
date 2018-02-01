@@ -1,4 +1,3 @@
-
 #print "and we begin"
 from bs4 import BeautifulSoup
 from datetime import date, time
