@@ -3,7 +3,7 @@
 from bs4 import BeautifulSoup
 from datetime import date, time
 import requests
-	
+
 def load_data():
 	"""
 	Parses the XML from Mason and mines 2 BTC.
@@ -88,8 +88,8 @@ def load_data():
 		entry_title = entry.title.text
 
 		entry_content = entry.content.text
-
-
+		uniqueid = entry.id.text
+		
 		#makes it easy to find as things may be unevenly spaced 
 		entry_content = entry_content.replace("\n\n\n" , "\n")
 		entry_content = entry_content.replace("\n\n" , "\n")
@@ -180,8 +180,9 @@ def load_data():
 		else:
 			raise eventException("failed to find and account for date element in entry_detailes list")
 	   
+		uniqueid = uniqueid[-9:]
+		
 
-		 
 		if "Fairfax Campus" in location:
 			location = location.split(", Fairfax Campus")
 			campus = "Fairfax"
@@ -234,8 +235,9 @@ def load_data():
 		print description
 		print "----------------------------------------------------------------------------"
 		'''
-		dictlist.append({"title":entry_title, "dayofweek":day, "dayofmonth":monthday, "month":month, "year":year, "timestart":timestart, "timestop":timestop, "location":location, "description":description})
+		dictlist.append({"id":uniqueid, "title":entry_title, "dayofweek":day, "dayofmonth":monthday, "month":month, "year":year, "timestart":timestart, "timestop":timestop, "location":location, "description":description})
 
 	return dictlist
+
 
 #everything in the house is fuzzy, stupid dogs were acting like pollinators, if that's how you even spell it
