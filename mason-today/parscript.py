@@ -182,12 +182,14 @@ def load_data():
 		uniqueid = uniqueid[-9:]
 		
 
+		location = location[:-1]
+		location += ", "
 		if "Fairfax Campus" in location:
-			location = location.split(", Fairfax Campus")
+			location = location.split(", Fairfax Campus, ")
 			campus = "Fairfax"
 			del location[-1]
 		elif "Arlington Campus" in location:
-			location = location.split(", Arlington Campus")
+			location = location.split(", Arlington Campus, ")
 			campus = "Arlington"
 			del location[-1]
 		else:
