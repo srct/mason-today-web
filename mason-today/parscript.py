@@ -19,7 +19,7 @@ def load_data():
 		"Saturday" : 6,
 	}
 
-	notProvide = "Not not provided"
+	notProvide = "Not provided"
 	counter = 0
 
 	def cleanup(str): #this function cleans up some of the useless html leftovers to characters we can actually use
