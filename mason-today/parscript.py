@@ -242,4 +242,3 @@ def load_data():
 
 
 #everything in the house is fuzzy, stupid dogs were acting like pollinators, if that's how you even spell it
-print load_data()
