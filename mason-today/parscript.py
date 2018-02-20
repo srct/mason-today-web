@@ -19,7 +19,7 @@ def load_data():
 		"Saturday" : 6,
 	}
 
-	notProvide = "Not provided"
+	notProvide = "Not Provided"
 	counter = 0
 
 	def cleanup(str): #this function cleans up some of the useless html leftovers to characters we can actually use
@@ -135,7 +135,6 @@ def load_data():
 			#See (B)
 			if len(entry_detailes) == 1:
 				location = notProvide
-				entry.location = "no location"
 				date = entry_detailes[0]
 				description = notProvide
 			#see (C)
@@ -182,8 +181,9 @@ def load_data():
 		uniqueid = uniqueid[-9:]
 		
 
-		location = location[:-1]
-		location += ", "
+		if location != notProvide:
+			location = location[:-1]
+			location += ", "
 		if "Fairfax Campus" in location:
 			location = location.split(", Fairfax Campus, ")
 			campus = "Fairfax"
@@ -242,3 +242,4 @@ def load_data():
 
 
 #everything in the house is fuzzy, stupid dogs were acting like pollinators, if that's how you even spell it
+print load_data()
