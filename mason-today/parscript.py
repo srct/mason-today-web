@@ -2,7 +2,6 @@
 from bs4 import BeautifulSoup
 from datetime import date, time
 import requests
-print "calendar"
 
 def load_data():
 	"""
