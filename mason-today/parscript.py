@@ -180,7 +180,7 @@ def load_data():
 			else:
 				raise eventException("failed to find and account for date element in entry_detailes list")
 		except eventException as e:
-			error.append(e.toString())
+			error.append(str(e))
 		except Exception:
 			error.append("Error intialising event")
 
